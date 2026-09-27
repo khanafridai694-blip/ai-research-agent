@@ -26,7 +26,7 @@ st.set_page_config(
     layout="centered",
 )
 
-MODEL_NAME = "llama-3.3-70b-versatile"
+MODEL_NAME = "openai/gpt-oss-120b"
 MAX_SEARCH_RESULTS = 5
 MAX_AGENT_STEPS = 4  # safety cap on tool-call loops
 
