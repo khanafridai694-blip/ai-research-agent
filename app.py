@@ -1,79 +1,56 @@
-
 import os
 import streamlit as st
+
+st.set_page_config(
+    page_title="AI Research Assistant",
+    page_icon="🔎",
+    layout="wide",
+)
 
 os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
 
 from agent import run_research
 
 
-
-# -------------------------
-# Page configuration
-# -------------------------
-
-st.set_page_config(
-    page_title="AI Research Assistant",
-    page_icon="🔎",
-    layout="wide"
-)
-
-
-# -------------------------
-# Title
-# -------------------------
-
 st.title("🔎 AI Research Assistant")
 
 st.write(
-    "Ask a research question and the AI agent will "
-    "search the web and create a structured research report."
+    "Ask a question and the AI agent will create "
+    "a structured research report."
 )
 
 
-# -------------------------
-# Sidebar
-# -------------------------
-
 with st.sidebar:
+    st.header("⚙️ Research Settings")
 
-    st.header("Research Settings")
-
-    st.write(
-        "This version uses one CrewAI research agent "
-        "with web search."
-    )
+    st.write("This application uses:")
+    st.write("• CrewAI")
+    st.write("• Groq")
+    st.write("• Streamlit")
 
     st.divider()
 
     st.info(
-        "The research agent may take some time because "
-        "it searches and analyzes multiple sources."
+        "The AI agent may take some time to analyze your question."
     )
 
 
-# -------------------------
-# Research question
-# -------------------------
-
 question = st.text_area(
     "What would you like me to research?",
+
     placeholder=(
-        "Example: What are the major applications of "
-        "artificial intelligence in healthcare?"
+        "Example: What are the major applications "
+        "of generative AI in software development?"
     ),
-    height=150
+
+    height=150,
 )
 
-
-# -------------------------
-# Research button
-# -------------------------
 
 if st.button(
     "🚀 Start Research",
     type="primary",
-    use_container_width=True
+    use_container_width=True,
 ):
 
     if not question.strip():
@@ -84,36 +61,24 @@ if st.button(
 
     else:
 
-        st.info(
-            "🔎 Research started. Please wait..."
-        )
-
         try:
 
             with st.spinner(
-                "The AI researcher is working..."
+                "🔎 Researching... Please wait..."
             ):
 
                 result = run_research(question)
 
-            st.success(
-                "Research completed!"
-            )
+            st.success("✅ Research completed!")
 
             st.divider()
 
-            st.subheader(
-                "📄 Research Report"
-            )
+            st.subheader("📄 Research Report")
 
-            st.markdown(
-                str(result)
-            )
+            st.markdown(str(result))
 
         except Exception as e:
 
-            st.error(
-                "Something went wrong."
-            )
+            st.error("❌ Something went wrong.")
 
             st.exception(e)
