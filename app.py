@@ -1,6 +1,12 @@
+
+import os
 import streamlit as st
 
+os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+os.environ["SERPER_API_KEY"] = st.secrets["SERPER_API_KEY"]
+
 from agent import run_research
+
 
 
 # -------------------------
