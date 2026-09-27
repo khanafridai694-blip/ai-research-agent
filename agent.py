@@ -6,7 +6,7 @@ from crewai import Agent, Task, Crew, Process, LLM
 def create_research_agent():
 
     llm = LLM(
-        model="groq/openai/gpt-oss-120b",
+        model="openai/gpt-oss-120b",
         api_key=os.getenv("GROQ_API_KEY"),
     )
 
