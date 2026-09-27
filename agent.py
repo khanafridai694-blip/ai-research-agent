@@ -1,7 +1,6 @@
 import os
 
 from crewai import LLM
-from crewai_tools import SerperDevTool
 
 
 def create_research_agent():
@@ -9,7 +8,6 @@ def create_research_agent():
     Creates our single research agent.
     """
 
-    search_tool = SerperDevTool()
 
     llm = LLM(
         model="openai/gpt-oss-120b",
@@ -31,7 +29,6 @@ def create_research_agent():
             "important facts, and clearly explain your findings."
         ),
 
-        tools=[search_tool],
 
         verbose=True,
 
