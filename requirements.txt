@@ -1,5 +1,2 @@
 streamlit
 crewai
-crewai-tools
-groq
-python-dotenv
